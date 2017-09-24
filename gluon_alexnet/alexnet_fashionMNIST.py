@@ -4,9 +4,9 @@ from mxnet import autograd
 from mxnet import init 
 import utils
 from mxnet import image
+from mxnet.gluon import nn
 
-
-net = nn.Sequential()
+net = gluon.nn.Sequential()
 with net.name_scope():
 	# Stage 1
 	net.add(nn.Conv2D(
@@ -26,7 +26,7 @@ with net.name_scope():
 	net.add(nn.MaxPool2D(pool_size=3, strides=2))
 
 	# Stage 4
-	net.add(nn.Flattern())
+	net.add(nn.Flatten())
 	net.add(nn.Dense(4096, activation='relu'))
 	net.add(nn.Dropout(.5))
 
@@ -43,7 +43,7 @@ def transform(data, label):
 	return utils.transform_mnist(data, label)
 batch_size = 64
 train_data, test_data = utils.load_data_fashion_mnist(batch_size, transform)
-
+assert 1==0
 ctx = utils.try_gpu
 
 net.initialize(ctx=ctx, init=init.Xavier())
