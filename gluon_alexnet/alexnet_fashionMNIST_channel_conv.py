@@ -41,9 +41,14 @@ with net_new.name_scope():
 	# Stage 1
 	net.add(nn.Conv3D(
 		channels=96, kernel_size=(1,11,11), strides=(1,4,4), activation='relu'))
-	net.add(nn.MaxPool2D(pool_size=(1,3,3),strides(1,2,2)))
+	net.add(nn.MaxPool3D(pool_size=(1,3,3),strides=(1,2,2)))
 	# Stage 2
-	net.add(nn.Conv)
+	net.add(nn.Conv3D(
+		channels=32, kernel_size=(16,5,5), strides=(8,1,1),padding=(0,2,2), activation='relu'))
+	net.add(nn.MaxPool3D(pool_size=(1,3,3),strides=(1,2,2)))
+	# Stage 3
+	ned.add(nn.Conv3D(
+		channels=))
 def transform(data, label):
 	# Resize from 28 x 28 to 224 x 224
 	data = image.imresize(data, 224, 224)
